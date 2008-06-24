@@ -1,7 +1,7 @@
 - if logged_in?
   %div#<%= file_name %>-bar-greeting
     Logged in as
-    = link_to_current_<%= filename %> :content_method => :login
+    = link_to_current_<%= file_name %> :content_method => :login
   %div#<%= file_name %>-bar-action
     = "(#{link_to "log out", logout_path, { :title => "Log out" }})"
 - else
