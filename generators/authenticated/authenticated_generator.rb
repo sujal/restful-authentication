@@ -226,9 +226,15 @@ class AuthenticatedGenerator < Rails::Generator::NamedBase
 
 
       # Controller templates
-      m.template 'login.html.erb',  File.join('app/views', controller_class_path, controller_file_name, "new.html.erb")
-      m.template 'signup.html.erb', File.join('app/views', model_controller_class_path, model_controller_file_name, "new.html.erb")
-      m.template '_model_partial.html.erb', File.join('app/views', model_controller_class_path, model_controller_file_name, "_#{file_name}_bar.html.erb")
+      if options[:haml]
+        m.template 'login.html.haml.erb',  File.join('app/views', controller_class_path, controller_file_name, "new.html.haml")
+        m.template 'signup.html.haml.erb', File.join('app/views', model_controller_class_path, model_controller_file_name, "new.html.haml")
+        m.template '_model_partial.haml.html.erb', File.join('app/views', model_controller_class_path, model_controller_file_name, "_#{file_name}_bar.html.haml")
+      else
+        m.template 'login.html.erb',  File.join('app/views', controller_class_path, controller_file_name, "new.html.erb")
+        m.template 'signup.html.erb', File.join('app/views', model_controller_class_path, model_controller_file_name, "new.html.erb")
+        m.template '_model_partial.html.erb', File.join('app/views', model_controller_class_path, model_controller_file_name, "_#{file_name}_bar.html.erb")        
+      end
 
       if options[:include_activation]
         # Mailer templates
