@@ -101,6 +101,7 @@ To use:
     --include-activation \
     --stateful \
     --rspec \
+    --haml \
     --skip-migration \
     --skip-routes \
     --old-passwords

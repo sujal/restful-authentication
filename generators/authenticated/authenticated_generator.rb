@@ -398,6 +398,8 @@ protected
       "Use acts_as_state_machine.  Assumes --include-activation") { |v| options[:include_activation] = options[:stateful] = true }
     opt.on("--aasm",
       "Use (gem) aasm.  Assumes --include-activation")            { |v| options[:include_activation] = options[:stateful] = options[:aasm] = true }      
+    opt.on("--haml",
+      "Use HAML templates instead")                               { |v| options[:haml] = true }
     opt.on("--rspec",
       "Force rspec mode (checks for RAILS_ROOT/spec by default)") { |v| options[:rspec] = true }
     opt.on("--no-rspec",
