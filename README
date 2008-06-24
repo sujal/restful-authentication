@@ -132,6 +132,10 @@ To use:
   and story suite are much more thorough than the rails tests, and changes are
   unlikely to be backported.
   
+* --haml: Generate HAML views rather than erb ones. This requires the 
+    "HAML plugin":http://github.com/nex3/haml/ and Gem.
+  It does not create haml ActionMailer views as these tend to be problematic.
+  
 * --old-passwords: Use the older password scheme (see [[#COMPATIBILITY]], above)
 
 * --skip-migration: Don't generate a migration file for this model
