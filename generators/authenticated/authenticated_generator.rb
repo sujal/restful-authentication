@@ -226,9 +226,15 @@ class AuthenticatedGenerator < Rails::Generator::NamedBase
 
 
       # Controller templates
-      m.template 'login.html.erb',  File.join('app/views', controller_class_path, controller_file_name, "new.html.erb")
-      m.template 'signup.html.erb', File.join('app/views', model_controller_class_path, model_controller_file_name, "new.html.erb")
-      m.template '_model_partial.html.erb', File.join('app/views', model_controller_class_path, model_controller_file_name, "_#{file_name}_bar.html.erb")
+      if options[:haml]
+        m.template 'login.html.haml.erb',  File.join('app/views', controller_class_path, controller_file_name, "new.html.haml")
+        m.template 'signup.html.haml.erb', File.join('app/views', model_controller_class_path, model_controller_file_name, "new.html.haml")
+        m.template '_model_partial.html.haml.erb', File.join('app/views', model_controller_class_path, model_controller_file_name, "_#{file_name}_bar.html.haml")
+      else
+        m.template 'login.html.erb',  File.join('app/views', controller_class_path, controller_file_name, "new.html.erb")
+        m.template 'signup.html.erb', File.join('app/views', model_controller_class_path, model_controller_file_name, "new.html.erb")
+        m.template '_model_partial.html.erb', File.join('app/views', model_controller_class_path, model_controller_file_name, "_#{file_name}_bar.html.erb")        
+      end
 
       if options[:include_activation]
         # Mailer templates
@@ -391,7 +397,9 @@ protected
     opt.on("--stateful",
       "Use acts_as_state_machine.  Assumes --include-activation") { |v| options[:include_activation] = options[:stateful] = true }
     opt.on("--aasm",
-      "Use (gem) aasm.  Assumes --include-activation")            { |v| options[:include_activation] = options[:stateful] = options[:aasm] = true }
+      "Use (gem) aasm.  Assumes --include-activation")            { |v| options[:include_activation] = options[:stateful] = options[:aasm] = true }      
+    opt.on("--haml",
+      "Use HAML templates instead")                               { |v| options[:haml] = true }
     opt.on("--rspec",
       "Force rspec mode (checks for RAILS_ROOT/spec by default)") { |v| options[:rspec] = true }
     opt.on("--no-rspec",
